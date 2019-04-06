@@ -10,7 +10,7 @@ const styles = {
         <center>
           <h1>Hap Hap Hap!</h1>
         </center>
-        <p> Mac 'n Cheese </p>
-      </div>
+`        <DishesContainer />
+`      </div>
     );
   };
