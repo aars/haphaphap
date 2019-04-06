@@ -36,7 +36,8 @@ class Dish extends React.Component {
           style={{
             margin: "1em",
             padding: "1em",
-            border: "1px solid #ddd"
+            border: "1px solid #ddd",
+            backgroundColor: "#fce"
           }}
         >
           {name}
