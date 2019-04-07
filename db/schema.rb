@@ -12,8 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_04_06_190022) do
 
-  
-
   create_table "dishes", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
