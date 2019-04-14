@@ -40,7 +40,7 @@ class Dish extends React.Component {
             backgroundColor: "#fce"
           }}
         >
-          {name}
+          <a href={"/dishes/" + this.props.dish.id}>{name}</a>
           
           <button onClick={() => this.handleEdit()}>
             {this.state.editable ? "Submit" : "Edit"}

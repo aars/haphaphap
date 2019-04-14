@@ -6,4 +6,6 @@ Rails.application.routes.draw do
     end 
   end   
   root to: 'home#index'
+  get '/dishes', to: 'dishes#index'
+  get '/dishes/:id', to: 'dishes#show'
 end
