@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  weeknr: 
+  weeknr: 1
 
 two:
-  weeknr: 
+  weeknr: 1
