@@ -1,11 +1,16 @@
 import React from "react"
 import PropTypes from "prop-types"
 
+const style = {
+  background: '#d90075'
+}
+
 class Header extends React.Component {
   render () {
     return (
       <React.Fragment>
-        Version: {this.props.version}
+        <nav>
+        </nav>
       </React.Fragment>
     );
   }

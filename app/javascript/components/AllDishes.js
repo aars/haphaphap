@@ -1,5 +1,4 @@
 import React from "react"
-
 import Dish from "components/Dish"
 
 class AllDishes extends React.Component {
