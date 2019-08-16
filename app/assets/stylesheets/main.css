@@ -1,0 +1,21 @@
+/*
+ * Color Palette from https://www.colourlovers.com/palette/49963/let_them_eat_cake
+ * banquette: #774F38
+ * strawberry: #E08E79
+ * creme dlc: #F1D4AF
+ * powderpuff: #ECE5CE
+ * charlotte: #C5E0DC
+ *
+ */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300);
+@import url(https://fonts.googleapis.com/css?family=Squada+One);
+
+body {
+  padding: 20px 80px;
+  background: #F6F6F6;
+  margin: 1em;
+  padding: 1em;
+  border: 1px solid #ddd;
+}
+

@@ -1,14 +1,13 @@
 const Header = props => {
     return (
         <div id="header">
-            <a href="/" id="logo">Dreamdealer</a>
+
             <ul id="menu">
-                <li><a href="/"><span>Home</span></a></li>
-                <li><a href="/"><span>Tutorials</span></a></li>
-                <li><a href="/"><span>Articles</span></a></li>
-                <li><a href="/"><span>About me</span></a></li>
-                <li><a href="/"><span>Contact</span></a></li>
+                <li><a href="/lists"><span>Lists</span></a></li>
+                <li><a href="/dishes"><span>Dishes</span></a></li>
+                <li><a href="/ingredients"><span>Ingred&iuml;ents</span></a></li>
+                <li><a href="/stores"><span>Stores</span></a></li>
             </ul>
-        </div>        
+        </div>
     );
 };
