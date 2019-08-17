@@ -20,3 +20,9 @@ console.log('Hap. Hap. Hap.')
 var componentRequireContext = require.context("components", true);
 var ReactRailsUJS = require("react_ujs");
 ReactRailsUJS.useContext(componentRequireContext);
+
+
+document.addEventListener('DOMContentLoaded', function() {
+	var elems = document.querySelectorAll('select');
+	var instances = M.FormSelect.init(elems);
+});

@@ -1,0 +1,10 @@
+.index-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  
+  border-left: 1px dashed rgba(0,0,0,.1);
+  .set-info {
+    font-family: "Montserrat";
+  }
+}

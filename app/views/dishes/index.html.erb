@@ -1,24 +1,34 @@
 <div class="row">
-  <h2 class="col s6">Dishes</h2>
+  <div class="col s6"><h2>Dishes</h2></div>
 
-  <div class="col s6 dishes-index-panel">
+  <div class="col s6 index-panel">
     <div class="set-info">
       <p>
-        <b>4</b> dishes selected
+        <b class="orange-text">2</b> dishes
       </p>
     </div>
+
     <div class="filter row">
-      <div class="col m3">
-        <div class="input-field col s12">
-					<select>
-						<option value="" disabled selected>sort by</option>
-						<option value="1">Option 1</option>
-						<option value="2">Option 2</option>
-						<option value="3">Option 3</option>
-					</select>
-					<label>Materialize Select</label>
-				</div><Paste>
+      <div class="input-field col s6">
+        <i class="material-icons prefix">search</i>
+        <input id="icon_prefix" type="text" class="validate">
+        <label for="icon_prefix">Find dish</label>
       </div>
+      <div class="input-field col s6">
+        <select>
+          <option value="" disabled selected>ingredi&euml;nts</option>
+          <option value="1">Beetroot</option>
+          <option value="2">Spaghetti</option>
+          <option value="3">Linguini</option>
+        </select>
+        <label>Filter by ingredi&euml;nt</label>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a href="/dishes/add" class="btn-floating blue lighten-3">
+        <i class="material-icons">add</i>
+      </a>
     </div>
   </div>
 </div>

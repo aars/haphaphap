@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application' %>
   </head>
@@ -23,10 +24,10 @@
     <footer class="page-footer blue lighten-3">
       <div class="container">
         <div class="row">
-          <div class="col l10 s12">
-            <h5 class="white-text">Dishes Index</h5>
+          <div class="col l10 s12 debug">
+            <h5 class="white-text">Debug</h5>
             <p class="grey-text text-lighten-4">
-              Tiramisu topping I love. Sweet roll tootsie roll I love biscuit. Gingerbread macaroon sesame snaps lemon drops chocolate bar soufflé sugar plum muffin.
+							<%= debug(params) %>
             </p>
           </div>
         </div>
