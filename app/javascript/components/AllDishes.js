@@ -3,7 +3,7 @@ import Dish from "components/Dish"
 
 class AllDishes extends React.Component {
   render() {
-    var dishes = this.props.dishes.map(dish => {
+    let dishes = this.props.dishes.map(dish => {
       return (
         <div key={dish.id}>
           <Dish
@@ -15,7 +15,11 @@ class AllDishes extends React.Component {
       );
     });
 
-    return <div>{dishes}</div>;
+    return (
+      <div className="row">
+        {dishes}
+      </div>
+    );
   }
 }
 

@@ -10,8 +10,15 @@
   </head>
 
   <body>
-    <%= react_component("Header") %>
-    <%= react_component("DishesContainer") %>
+    <header>
+      <%= react_component("Header") %>
+    </header>
+
+    <main>
+      <div class="container">
+        <%= yield %>
+      </div>
+    </main>
 
     <footer>
     </footer>

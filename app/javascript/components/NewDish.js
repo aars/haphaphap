@@ -22,7 +22,7 @@ const NewDish = props => {
         placeholder="Enter the name"
       />
 
-      <button>Submit</button>
+      <button className="btn blue lighten-2">Submit</button>
     </form>
   );
 };

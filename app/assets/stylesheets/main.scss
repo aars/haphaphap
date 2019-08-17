@@ -1,0 +1,34 @@
+/*
+ * Color Palette from https://www.colourlovers.com/palette/49963/let_them_eat_cake
+ * banquette: #774F38
+ * strawberry: #E08E79
+ * creme dlc: #F1D4AF
+ * powderpuff: #ECE5CE
+ * charlotte: #C5E0DC
+ *
+ */
+
+@import "https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300";
+@import "https://fonts.googleapis.com/css?family=Squada+One";
+
+nav .nav-wrapper {
+  background-color: #E08E79;
+  border-bottom: 2px solid rgba(0,0,0,.5);
+}
+
+#brand-logo img {
+  width: 80px;
+  height: 80px;
+}
+
+#brand-name {
+  font-family: 'Squada One';
+  margin-left: 1em;
+}
+
+.blocktitle {
+  font-family: 'Squada One';
+  font-size: 42px;
+  padding: 10px 20px;
+  border-radius: 10px;
+}

@@ -17,6 +17,16 @@ class DishesContainer extends React.Component {
     this.updateDish = this.updateDish.bind(this);
   }
 
+  getDishes() {
+    fetch("/api/v1/dishes.json")
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        this.setState({ dishes: data });
+      });
+  }
+
   handleFormSubmit(name) {
     let body = JSON.stringify({
       dish: { name: name }
@@ -83,20 +93,17 @@ class DishesContainer extends React.Component {
   }
 
   componentDidMount() {
-    fetch("/api/v1/dishes.json")
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        this.setState({ dishes: data });
-      });
+    this.getDishes()
   }
   render() {
     return (
       <React.Fragment>
-        <h2>Add new dish</h2>
-        <NewDish handleFormSubmit={this.handleFormSubmit} />
-        <h2>All dishes</h2>
+        <h1 class="blocktitle blue lighten-4 z-depth-1 retroshadow">Add new dish</h1>
+        <NewDish
+          handleFormSubmit={this.handleFormSubmit}
+        />
+
+        <h1 class="blocktitle blue lighten-4 z-depth-1 retroshadow">All dishes</h1>
         <AllDishes
           dishes={this.state.dishes}
           handleDelete={this.handleDelete}

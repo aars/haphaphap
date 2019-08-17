@@ -1,10 +1,11 @@
 import React from "react"
 import PropTypes from "prop-types"
 
+import DishesContainer from "components/DishesContainer"
+
 const Dishes = props => {
   return (
-    <div style={styles}>
-
+    <div>
       <DishesContainer />
     </div>
   );
