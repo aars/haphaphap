@@ -53,9 +53,7 @@ class Dish extends React.Component {
           </div>
 
           <div className="card-action">
-            <a href="#" onClick={() => this.handleEdit()}>
-              {this.state.editable ? "Submit" : "Edit"}
-            </a>
+            <a href={"/dishes/"+this.props.dish.id+"/edit"}>edit</a>
             {!this.state.editable && (
               <a className="red-text" onClick={() => this.props.handleDelete(this.props.dish.id)}>
                 Delete
