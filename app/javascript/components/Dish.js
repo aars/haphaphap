@@ -38,10 +38,15 @@ class Dish extends React.Component {
 
     return (
       <div className="col s12 m6">
-        <div className="card">
+        <div className="card dish orange lighten-3">
           <div className="card-image">
             <img className="responsive-img" src={dishImages[this.props.dish.id]} />
-            <span className="card-title"><h4 className="text-shadow">{this.props.dish.name}</h4></span>
+            <span className="card-title">
+              <a href={"/dishes/"+this.props.dish.id}  className="text-shadow">
+                <h4>{this.props.dish.name}</h4>
+              </a>
+           </span>
+
             <a className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">add</i></a>
 
           </div>
@@ -52,13 +57,11 @@ class Dish extends React.Component {
             </p>
           </div>
 
-          <div className="card-action">
-            <a href={"/dishes/"+this.props.dish.id+"/edit"}>edit</a>
-            {!this.state.editable && (
-              <a className="red-text" onClick={() => this.props.handleDelete(this.props.dish.id)}>
-                Delete
-              </a>
-            )}
+          <div className="card-action orange">
+            <a className="white-text" href={"/dishes/"+this.props.dish.id+"/edit"}>
+              <i className="material-icons left">edit</i>
+              edit
+            </a>
           </div>
         </div>
       </div>

@@ -61,6 +61,16 @@ h2 {
   color: #774F38;
 }
 
+.card.dish .card-title h4 {
+  font-family: 'Montserrat';
+  font-weight: 200 !important;
+  text-shadow: 1px 1px 0px #fff;
+  color: #774F38;
+  background: rgba(255,255,255,.3);
+  padding: 5px 20px;
+}
+
+
 .dishes-index-menu {
   display: flex;
 }

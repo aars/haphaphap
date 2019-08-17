@@ -2,6 +2,13 @@ import React from "react"
 import PropTypes from "prop-types"
 
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      zien: false
+    };
+  }
+
   render () {
     return (
       <React.Fragment>
@@ -19,7 +26,13 @@ class Home extends React.Component {
               </div>
               <div className="card-action">
                 <a href="#" className="green-text">Dit is de shit!</a>
-                <a href="#" className="red-text text-lighten-2">Nee. Ik vind niks.</a>
+                <a
+                  href="#" className="red-text text-lighten-2"
+                  onClick={() => this.setState({ zien: !this.state.zien })}
+                >Nee. Ik vind niks.</a>
+
+
+                {this.state.zien ? "ja" : "nee"}
               </div>
             </div>
           </div>
