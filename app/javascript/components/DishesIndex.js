@@ -1,10 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import NewDish from "components/NewDish"
-import AllDishes from "components/AllDishes"
+import Dish from "components/Dish"
 
-class DishesContainer extends React.Component {
+class DishesIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -96,22 +95,26 @@ class DishesContainer extends React.Component {
     this.getDishes()
   }
   render() {
+    let dishes = this.state.dishes.map(dish => {
+      return (
+        <div key={dish.id}>
+          <Dish
+            dish={dish}
+            handleDelete={this.handleDelete}
+            handleUpdate={this.handleUpdate}
+          />
+        </div>
+      );
+    });
+
     return (
       <React.Fragment>
-        <h1 class="blocktitle blue lighten-4 z-depth-1 retroshadow">Add new dish</h1>
-        <NewDish
-          handleFormSubmit={this.handleFormSubmit}
-        />
-
-        <h1 class="blocktitle blue lighten-4 z-depth-1 retroshadow">All dishes</h1>
-        <AllDishes
-          dishes={this.state.dishes}
-          handleDelete={this.handleDelete}
-          handleUpdate={this.handleUpdate}
-        />
+        <div className="row">
+          {dishes}
+        </div>
       </React.Fragment>
     );
   }
 }
 
-export default DishesContainer
+export default DishesIndex

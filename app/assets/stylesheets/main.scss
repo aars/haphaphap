@@ -8,12 +8,14 @@
  *
  */
 
-@import "https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300";
+@import 'https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400';
 @import "https://fonts.googleapis.com/css?family=Squada+One";
 
-nav .nav-wrapper {
-  background-color: #E08E79;
-  border-bottom: 2px solid rgba(0,0,0,.5);
+nav {
+  .nav-wrapper {
+    background-color: #E08E79;
+    border-bottom: 2px solid rgba(0,0,0,.5);
+  }
 }
 
 #brand-logo img {
@@ -31,4 +33,14 @@ nav .nav-wrapper {
   font-size: 42px;
   padding: 10px 20px;
   border-radius: 10px;
+}
+
+h1 {
+  font-family: 'Squada One';
+}
+
+h2 {
+  font-family: 'Montserrat';
+  font-weight: 100 !important;
+  color: #774F38;
 }
