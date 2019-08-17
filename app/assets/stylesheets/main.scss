@@ -11,11 +11,27 @@
 @import 'https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400';
 @import "https://fonts.googleapis.com/css?family=Squada+One";
 
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
 nav {
   .nav-wrapper {
     background-color: #E08E79;
     border-bottom: 2px solid rgba(0,0,0,.5);
   }
+}
+
+.footer-copyright {
+  font-family: 'Montserrat';
+  font-weight: 100 !important;
 }
 
 #brand-logo img {
@@ -43,4 +59,8 @@ h2 {
   font-family: 'Montserrat';
   font-weight: 100 !important;
   color: #774F38;
+}
+
+.dishes-index-menu {
+  display: flex;
 }
