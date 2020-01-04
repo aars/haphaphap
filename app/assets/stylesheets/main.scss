@@ -10,7 +10,7 @@
 
 @import 'https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,800';
 @import "https://fonts.googleapis.com/css?family=Squada+One";
-@import 'https://fonts.googleapis.com/css?family=Cutive+Mono';
+@import 'https://fonts.googleapis.com/css?family=Cutive+Mono:100,200,300,400,800';
 
 body {
   display: flex;
@@ -55,11 +55,24 @@ h1 {
   font-family: 'Squada One';
 }
 
-h2, h3, h4 {
+h2, h3, h4, h5 {
   font-family: 'Montserrat';
   font-weight: 100 !important;
   color: #774F38;
 }
+
+h4 {
+  font-family: 'Montserrat';
+  font-weight: 200 !important;
+  color: #774F38;
+}
+
+h4, h5, h6 {
+  font-family: 'Montserrat';
+  font-weight: 300 !important;
+  color: #774F38;
+}
+
 
 .card.dish .card-title h4 {
   font-family: 'Montserrat';
@@ -77,4 +90,18 @@ h2, h3, h4 {
 
 .top-actions {
   padding-top: 5px !important;
+
+  .actions {
+    width: 100%;
+    justify-content: flex-end;
+
+    & > *:not(:first-child) {
+      margin-left: 10px;
+    }
+  }
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
 }

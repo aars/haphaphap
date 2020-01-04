@@ -7,17 +7,18 @@ class Dish extends React.Component {
     this.state = {
       editable: false,
       dish: props.dish,
+      ingredients: props.dish.ingredients
     };
-    console.log(props.dish);
     this.handleEdit = this.handleEdit.bind(this);
   }
 
+  // Handles dish property edits. Relationships (lists, recipes) handled seperately.
   handleEdit() {
     if (this.state.editable) {
       let dish = {
         id: this.props.dish.id,
         name: this.name.value,
-        description: this.description.value
+        description: this.description.value,
       };
       this.state.dish = dish;
       // this.props.handleUpdate(dish);
@@ -46,25 +47,29 @@ class Dish extends React.Component {
     ) : (
       this.state.dish.description
     );
-    let edit = this.state.editable ? (
-      <button className="btn waves-effect waves-light green btn-small right" onClick={this.handleEdit}>
-        <i className="material-icons">check</i>
-      </button>
-    ) : (
-      <button className="btn waves-effect waves-light blue btn-small right" onClick={this.handleEdit}>
-        <i className="material-icons">edit</i>
-      </button>
-    );
 
     return (
       <React.Fragment>
         <div className={'dish-page ' + (this.state.editable ? 's-editable' : '')}>
-          <div className="row">
-            <div className="col s9">
+          <div className="row flex">
+            <div className="col s10">
               <h4>{name}</h4>
             </div>
-            <div className="col s3 top-actions">
-              {edit}
+            <div className="col s2 top-actions valign-wrapper">
+              {this.props.editable &&
+                <div className="actions flex">
+                  <button className="btn waves-effect waves-light blue btn-small" onClick={this.handleEdit}>
+                    {this.state.editable ? (
+                      <i className="material-icons">check</i>
+                    ) : (
+                      <i className="material-icons">edit</i>
+                    )}
+                  </button>
+                  <button className="btn waves-effect waves-light btn-small red darken-4" onClick={this.handleEdit}>
+                    <i className="material-icons">delete</i>
+                  </button>
+                </div>
+              }
             </div>
           </div>
 
@@ -72,14 +77,19 @@ class Dish extends React.Component {
             <div className="col s6">
               <p className="description">{description}</p>
 
-              <h6>Ingredients</h6>
-              <ul>
-                <li>ingredient</li>
-                <li>ingredient</li>
-                <li>ingredient</li>
-                <li>ingredient</li>
-                <li>ingredient</li>
+              <h5>Ingredients</h5>
+              <ul className="ingredients">
+                {this.state.ingredients.length && this.state.ingredients.map(ingredient => (
+                  <li className="ingredient" key={ingredient.id}>{ingredient.name}</li>)
+                ) || (
+                  <li className="placeholder">No ingredients yet.</li>
+                )}
               </ul>
+              <p>
+                <a className="btn btn-floating btn-small waves-effect waves-light green lighten-3">
+                  <i className="material-icons">add</i>
+                </a>
+              </p>
             </div>
             <div className="col s6 dish-image">
               <img className="responsive-img" src={dishImages[this.props.dish.id] || dishImages['default']} />

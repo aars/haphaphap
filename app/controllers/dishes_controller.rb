@@ -1,13 +1,19 @@
 class DishesController < ApplicationController
-    def index
-    end
-    def show
-      @dish = Dish.includes(:ingredients).find(params[:id])
-      binding.pry
-    end
-    def edit
-      @dish = Dish.find(params[:id])
-    end
-    def add
-    end
+  def get_dish id
+    associations = [:ingredients, :weeklists]
+    Dish
+      .eager_load(*associations)
+      .find(params[id])
+      .as_json(include: associations)
+  end
+  def index
+  end
+  def show
+    @dish = get_dish :id
+  end
+  def edit
+    @dish = get_dish :id
+  end
+  def add
+  end
 end

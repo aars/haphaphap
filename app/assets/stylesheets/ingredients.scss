@@ -1,3 +1,27 @@
 // Place all the styles related to the ingredients controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+ul.ingredients {
+  font-family: "Cutive Mono";
+  
+  li.placeholder {
+    font-size: 18px;
+  }
+
+  li.ingredient {
+    font-size: 20px;
+    padding-left: 10px;
+    border-bottom: 2px solid rgba(0,0,0,.02);
+    text-shadow: 1px 1px 0px rgba(255,255,255,.2);
+    text-transform: capitalize;
+  
+    &:nth-child(even) {
+      background: lighten(#c8e6c9, 13);
+    }
+    &:nth-child(odd) {
+      background: #e8f5e9;
+    }
+
+  }
+}

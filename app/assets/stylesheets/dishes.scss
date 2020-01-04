@@ -16,7 +16,7 @@
   p.description {
     min-height: 3rem;
     font-size: 16px;
-    margin-bottom: 1.2rem;
+    margin: 0 0 22px 0;
   }
 }
 
@@ -37,6 +37,7 @@
     font-family: unset !important;
     font-weight: unset !important;
     margin-bottom: 0;
+
     textarea {
       padding: .2rem 0 .1rem;
       margin: 0;
