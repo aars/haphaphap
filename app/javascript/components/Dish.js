@@ -1,6 +1,8 @@
-import React from "react"
+import React from "react";
 
-import dishImages from 'components/DishImages'
+import API from "../api";
+import dishImages from "components/DishImages";
+
 class Dish extends React.Component {
   constructor(props) {
     super(props);
@@ -11,7 +13,7 @@ class Dish extends React.Component {
       addingIngredient: false,
       isDeleting: false,
     };
-    console.log(this.state.dish);
+
     this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleAddIngredient = this.handleAddIngredient.bind(this);
@@ -20,14 +22,15 @@ class Dish extends React.Component {
   // Handles dish property edits. Relationships (lists, recipes) handled seperately.
   handleEdit() {
     if (this.state.editable) {
-      this.setState({
-        dish: {
-          id: this.props.dish.id,
-          name: this.name.value,
-          description: this.description.value,
-        }
+      let dish = {
+        id: this.props.dish.id,
+        name: this.name.value,
+        description: this.description.value
+      }
+      API.updateDish(dish).then(dish => {
+        this.setState({ dish: dish });
+        console.log(dish);
       });
-      // this.props.handleUpdate(dish);
     }
     this.setState({
       editable: !this.state.editable

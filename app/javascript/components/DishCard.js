@@ -51,9 +51,7 @@ class DishCard extends React.Component {
           </div>
 
           <div className="card-content">
-            <p>
-              Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.
-            </p>
+            <p>{this.props.dish.description}</p>
           </div>
         </div>
       </div>
