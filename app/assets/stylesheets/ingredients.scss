@@ -22,6 +22,18 @@ ul.ingredients {
     &:nth-child(odd) {
       background: #e8f5e9;
     }
+  }
 
+  li.add {
+    position: relative;
+  }
+
+  li.add-input {
+    font-family: "Cutive Mono";
+
+    input {
+      padding-left: 10px;
+      width: 80%;
+    }
   }
 }

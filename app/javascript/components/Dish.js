@@ -7,25 +7,39 @@ class Dish extends React.Component {
     this.state = {
       editable: false,
       dish: props.dish,
-      ingredients: props.dish.ingredients
+      ingredients: props.dish.ingredients,
+      addingIngredient: false,
     };
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleAddIngredient = this.handleAddIngredient.bind(this);
   }
 
   // Handles dish property edits. Relationships (lists, recipes) handled seperately.
   handleEdit() {
     if (this.state.editable) {
-      let dish = {
-        id: this.props.dish.id,
-        name: this.name.value,
-        description: this.description.value,
-      };
-      this.state.dish = dish;
+      this.setState({
+        dish: {
+          id: this.props.dish.id,
+          name: this.name.value,
+          description: this.description.value,
+        }
+      });
       // this.props.handleUpdate(dish);
     }
     this.setState({
       editable: !this.state.editable
     });
+  }
+
+  handleAddIngredient() {
+    if (this.state.addingIngredient) {
+      if (this.newIngredient && this.newIngredient.value) {
+        let ingredients = this.state.ingredients;
+        ingredients.push({name: this.newIngredient.value});
+        this.setState({ ingredients: ingredients });
+      }
+    }
+    this.setState({ addingIngredient: !this.state.addingIngredient });
   }
 
   render() {
@@ -48,6 +62,12 @@ class Dish extends React.Component {
       this.state.dish.description
     );
 
+    let addIngredientBtnClasses = [
+      "btn", "btn-floating", "halfway-fab", "btn-small",
+      "waves-effect", "waves-light", "green", "right",
+      (this.state.addingIngredient ? "darken-2" : "lighten-3")
+    ];
+
     return (
       <React.Fragment>
         <div className={'dish-page ' + (this.state.editable ? 's-editable' : '')}>
@@ -65,6 +85,7 @@ class Dish extends React.Component {
                       <i className="material-icons">edit</i>
                     )}
                   </button>
+
                   <button className="btn waves-effect waves-light btn-small red darken-4" onClick={this.handleEdit}>
                     <i className="material-icons">delete</i>
                   </button>
@@ -84,11 +105,23 @@ class Dish extends React.Component {
                 ) || (
                   <li className="placeholder">No ingredients yet.</li>
                 )}
+
+                <li className="add">
+                  <a className={addIngredientBtnClasses.join(' ')} onClick={this.handleAddIngredient}>
+                    <i className="material-icons">add</i>
+                  </a>
+                </li>
+                {this.state.addingIngredient && (
+                <li className="add-input input-field">
+                  <input
+                    type="text"
+                    ref={input => (this.newIngredient = input)}
+                    placeholder="Ingredient name"
+                  />
+                </li>
+                )}
               </ul>
               <p>
-                <a className="btn btn-floating btn-small waves-effect waves-light green lighten-3">
-                  <i className="material-icons">add</i>
-                </a>
               </p>
             </div>
             <div className="col s6 dish-image">
