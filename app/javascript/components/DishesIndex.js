@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import Dish from "components/Dish"
+import DishCard from "components/DishCard"
 
 class DishesIndex extends React.Component {
   constructor(props) {
@@ -98,7 +98,7 @@ class DishesIndex extends React.Component {
     let dishes = this.state.dishes.map(dish => {
       return (
         <div key={dish.id}>
-          <Dish
+          <DishCard
             dish={dish}
             handleDelete={this.handleDelete}
             handleUpdate={this.handleUpdate}

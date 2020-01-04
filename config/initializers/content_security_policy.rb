@@ -14,7 +14,8 @@ Rails.application.config.content_security_policy do |policy|
 
 #   # Specify URI for violation reports
 #   # policy.report_uri "/csp-violation-report-endpoint"
-  policy.connect_src :self, :https, "http://localhost:35729", "ws://localhost:35729" if Rails.env.development?
+  #policy.script_src  :self, :https, :unsafe_eval if Rails.env.development?
+  policy.connect_src :self, :https, "http://localhost:3035", "ws://localhost:3035", "http://localhost:35729", "ws://localhost:35729" if Rails.env.development?
 end
 
 # If you are using UJS then enable automatic nonce generation

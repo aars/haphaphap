@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get '/dishes', to: 'dishes#index'
   get '/dishes/add', to: 'dishes#add'
   get '/dishes/:id', to: 'dishes#show'
+  get '/dishes/:id/edit', to: 'dishes#edit'
 end

@@ -1,12 +1,33 @@
 import React from "react"
 import PropTypes from "prop-types"
 
+function handleFormSubmit(name) {
+  let body = JSON.stringify({
+    dish: { name: name }
+  });
+
+  fetch("http://localhost:3000/api/v1/dishes", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: body
+  })
+    .then(response => {
+      return response.json();
+    })
+    .then(dish => {
+      this.addNewDish(dish);
+    });
+}
+
+
 const NewDish = props => {
   let formFields = {};
 
   return (
     <form onSubmit={e => {
-        props.handleFormSubmit(formFields.name.value);
+        handleFormSubmit(formFields.name.value);
         e.target.reset();
         e.preventDefault();
       }}

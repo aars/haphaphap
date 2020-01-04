@@ -1,7 +1,7 @@
 import React from "react"
 
 import dishImages from 'components/DishImages'
-class Dish extends React.Component {
+class DishCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,8 +44,9 @@ class Dish extends React.Component {
               </a>
            </span>
 
-            <a className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">add</i></a>
-
+            <a className="btn-floating halfway-fab waves-effect waves-light blue">
+              <i className="material-icons">playlist_add</i>
+            </a>
           </div>
 
           <div className="card-content">
@@ -54,8 +55,8 @@ class Dish extends React.Component {
             </p>
           </div>
 
-          <div className="card-action orange">
-            <a className="white-text" href={"/dishes/"+this.props.dish.id+"/edit"}>
+          <div className="card-action orange small">
+            <a className="white-text btn-flat waves-effect waves-light" href={"/dishes/"+this.props.dish.id+"/edit"}>
               <i className="material-icons left">edit</i>
               edit
             </a>
@@ -66,4 +67,4 @@ class Dish extends React.Component {
   }
 }
 
-export default Dish
+export default DishCard
