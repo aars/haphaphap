@@ -37,12 +37,13 @@ class DishCard extends React.Component {
       <div className="col s12 m6">
         <div className="card dish orange lighten-3">
           <div className="card-image">
-            <img className="responsive-img" src={dishImages[this.props.dish.id] || dishImages['default']} />
-            <span className="card-title">
-              <a href={"/dishes/"+this.props.dish.id}  className="text-shadow">
+            <a href={"/dishes/"+this.props.dish.id}>
+              <img className="responsive-img" src={dishImages[this.props.dish.id] || dishImages['default']} />
+              <span className="card-title text-shadow">
                 <h4>{this.props.dish.name}</h4>
-              </a>
-           </span>
+              </span>
+            </a>
+
 
             <a className="btn-floating halfway-fab waves-effect waves-light blue">
               <i className="material-icons">playlist_add</i>

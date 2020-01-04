@@ -1,26 +1,13 @@
 import React from "react"
 import PropTypes from "prop-types"
 
+import API from "../api"
+
 function handleFormSubmit(name) {
-  let body = JSON.stringify({
-    dish: { name: name }
+  API.createDish(name).then(dish => {
+    window.location.pathname = `/dishes/${dish.id}`;
   });
-
-  fetch("http://localhost:3000/api/v1/dishes", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: body
-  })
-    .then(response => {
-      return response.json();
-    })
-    .then(dish => {
-      this.addNewDish(dish);
-    });
 }
-
 
 const NewDish = props => {
   let formFields = {};

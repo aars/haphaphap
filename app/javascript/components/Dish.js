@@ -11,6 +11,7 @@ class Dish extends React.Component {
       addingIngredient: false,
       isDeleting: false,
     };
+    console.log(this.state.dish);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleAddIngredient = this.handleAddIngredient.bind(this);

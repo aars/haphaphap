@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_04_143118) do
+ActiveRecord::Schema.define(version: 2020_01_04_190905) do
 
   create_table "dishes", force: :cascade do |t|
     t.string "name"
@@ -34,6 +34,44 @@ ActiveRecord::Schema.define(version: 2020_01_04_143118) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ingredients_recipe_steps", id: false, force: :cascade do |t|
+    t.integer "recipe_step_id", null: false
+    t.integer "ingredient_id", null: false
+  end
+
+  create_table "ingredients_recipes", id: false, force: :cascade do |t|
+    t.integer "recipe_id", null: false
+    t.integer "ingredient_id", null: false
+  end
+
+  create_table "recipe_ingredients", force: :cascade do |t|
+    t.integer "amount"
+    t.string "unit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "recipe_steps", force: :cascade do |t|
+    t.text "instruction"
+    t.integer "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "recipe_steps_recipes", id: false, force: :cascade do |t|
+    t.integer "recipe_id", null: false
+    t.integer "recipe_step_id", null: false
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "duration"
+    t.integer "dish_id"
   end
 
   create_table "weeklists", force: :cascade do |t|

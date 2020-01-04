@@ -1,12 +1,18 @@
 class DishesController < ApplicationController
   def get_dish id
-    associations = [:ingredients, :weeklists]
     Dish
-      .eager_load(*associations)
       .find(params[id])
-      .as_json(include: associations)
+      .as_json(include: [
+        :ingredients,
+        :weeklists,
+        :recipes => {
+          :include => :recipe_steps
+        }
+      ])
   end
+
   def index
+    @dishes = Dish.all
   end
   def show
     @dish = get_dish :id
