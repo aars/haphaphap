@@ -29,7 +29,6 @@ class Dish extends React.Component {
       }
       API.updateDish(dish).then(dish => {
         this.setState({ dish: dish });
-        console.log(dish);
       });
     }
     this.setState({
