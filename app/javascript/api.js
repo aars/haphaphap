@@ -44,6 +44,14 @@ class API {
       return response.json();
     });
   }
+
+  getRecipe(id) {
+    return fetch(`${this.base}/recipes/${id}`)
+      .then(response => {
+        return response.json();
+      })
+  }
+
 }
 
 const api = new API('/api/v1');

@@ -121,7 +121,7 @@ class Dish extends React.Component {
             <div className="col s6 ingredients">
               <p className="description">{description}</p>
 
-              <h5 className="title">Ingredients <span>(for recipe #1)</span></h5>
+              <h4 className="title">Ingredients <span>(for recipe #1)</span></h4>
               <ul className="ingredients">
                 {this.state.ingredients.length && this.state.ingredients.map(ingredient => (
                   <li className="ingredient" key={ingredient.id}>{ingredient.name}</li>)

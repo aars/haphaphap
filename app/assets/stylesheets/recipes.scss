@@ -1,6 +1,8 @@
 .row.recipe {
   .name {
-    border-bottom: 2px solid rgba(0,0,0,.1);
+    background: rgba(0,0,0,.05);
+    padding: 0 10px;
+    display: inline;
   }
 
   .description {
@@ -8,13 +10,25 @@
   }
 
   .step-duration {
-    position: relative;
-    overflow: visible !important;
+    color: #bcbcbc;
 
     span {
-      position: absolute;
-      left: calc(100% + 5px);
       font-size: 14px;
+    }
+  }
+  
+  &.as-step {
+    .collection {
+      border: none;
+    }
+    .collection li {
+      border-top: 1px solid rgba(0,0,0,.1);
+    }
+  }
+
+  .row.recipe_step {
+    &.is-recipe {
+      padding-right: 0;
     }
   }
 }
