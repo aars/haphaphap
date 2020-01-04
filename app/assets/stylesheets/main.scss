@@ -94,6 +94,18 @@ h4, h5, h6 {
   .actions {
     width: 100%;
     justify-content: flex-end;
+    
+    & > * {
+      border-radius: 50%;
+      height: 42px;
+      width: 42px;
+      line-height: 42px;
+      padding: 0px 10px;
+
+      i {
+        font-size: 24px;
+      }
+    }
 
     & > *:not(:first-child) {
       margin-left: 10px;

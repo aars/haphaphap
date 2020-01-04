@@ -18,21 +18,31 @@
     font-size: 16px;
     margin: 0 0 22px 0;
   }
+
+  .ingredients {
+    .title span {
+      font-size: 16px;
+      font-family: "Cutive Mono";
+      float: right;
+      font-weight: bold;
+    }
+  } 
 }
 
 .dish-page.s-editable {
-  h4 {
+  .name {
     margin-top: 1.2rem;     
     margin-bottom: 0.07rem;
+    text-shadow: 1px 1px rgba(255,255,255,.8);
+    
+    input {
+      font-size: unset !important;
+      font-family: unset !important;
+      font-weight: unset !important;
+      font-color: unset !important;
+    }
   }
 
-  input {
-    font-size: unset !important;
-    font-family: unset !important;
-    font-weight: unset !important;
-    font-color: unset !important;
-  }
-  
   p.description {
     font-family: unset !important;
     font-weight: unset !important;
@@ -43,5 +53,5 @@
       margin: 0;
     }
   }
-
+ 
 }

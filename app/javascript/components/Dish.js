@@ -5,12 +5,14 @@ class Dish extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      editable: false,
       dish: props.dish,
       ingredients: props.dish.ingredients,
+      editable: false,
       addingIngredient: false,
+      isDeleting: false,
     };
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     this.handleAddIngredient = this.handleAddIngredient.bind(this);
   }
 
@@ -28,6 +30,12 @@ class Dish extends React.Component {
     }
     this.setState({
       editable: !this.state.editable
+    });
+  }
+
+  handleDelete() {
+    this.setState({
+      isDeleting: !this.state.isDeleting
     });
   }
 
@@ -67,16 +75,23 @@ class Dish extends React.Component {
 
     let addIngredientBtnClasses = [
       "btn", "btn-floating", "halfway-fab", "btn-small",
-      "waves-effect", "waves-light", "green", "right",
+      "waves-effect", "waves-light", "blue", "right",
       (this.state.addingIngredient ? "darken-2" : "lighten-3")
     ];
+
+    let deleteBtnClasses = ["btn", "waves-effect", "waves-light"];
+    if (this.state.isDeleting) {
+      deleteBtnClasses.push("deep-orange", "darken-4", "yellow-text", "text-accent-3");
+    } else {
+      deleteBtnClasses.push("white", "deep-orange-text", "text-lighten-2");
+    }
 
     return (
       <React.Fragment>
         <div className={'dish-page ' + (this.state.editable ? 's-editable' : '')}>
           <div className="row flex">
             <div className="col s10">
-              <h4>{name}</h4>
+              <h4 className="name">{name}</h4>
             </div>
             <div className="col s2 top-actions valign-wrapper">
               {this.props.editable &&
@@ -89,7 +104,7 @@ class Dish extends React.Component {
                     )}
                   </button>
 
-                  <button className="btn waves-effect waves-light btn-small red darken-4" onClick={this.handleEdit}>
+                  <button className={deleteBtnClasses.join(' ')} onClick={this.handleDelete}>
                     <i className="material-icons">delete</i>
                   </button>
                 </div>
@@ -98,10 +113,10 @@ class Dish extends React.Component {
           </div>
 
           <div className="row">
-            <div className="col s6">
+            <div className="col s6 ingredients">
               <p className="description">{description}</p>
 
-              <h5>Ingredients</h5>
+              <h5 className="title">Ingredients <span>(for recipe #1)</span></h5>
               <ul className="ingredients">
                 {this.state.ingredients.length && this.state.ingredients.map(ingredient => (
                   <li className="ingredient" key={ingredient.id}>{ingredient.name}</li>)
