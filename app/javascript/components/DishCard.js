@@ -54,13 +54,6 @@ class DishCard extends React.Component {
               Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic.
             </p>
           </div>
-
-          <div className="card-action orange small">
-            <a className="white-text btn-flat waves-effect waves-light" href={"/dishes/"+this.props.dish.id+"/edit"}>
-              <i className="material-icons left">edit</i>
-              edit
-            </a>
-          </div>
         </div>
       </div>
     );

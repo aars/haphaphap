@@ -1,4 +1,4 @@
 class Dish < ApplicationRecord
-    has_many :ingredients 
-    has_many :weeklists
+    has_and_belongs_to_many :ingredients
+    has_and_belongs_to_many :weeklists
 end

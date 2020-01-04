@@ -55,7 +55,7 @@ h1 {
   font-family: 'Squada One';
 }
 
-h2 {
+h2, h3, h4 {
   font-family: 'Montserrat';
   font-weight: 100 !important;
   color: #774F38;
@@ -73,4 +73,8 @@ h2 {
 
 .dishes-index-menu {
   display: flex;
+}
+
+.top-actions {
+  padding-top: 5px !important;
 }

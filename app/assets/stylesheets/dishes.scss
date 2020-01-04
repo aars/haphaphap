@@ -8,3 +8,39 @@
     font-family: "Montserrat";
   }
 }
+
+.dish-page {
+  position: relative;
+  min-height: 100vh;
+
+  p.description {
+    min-height: 3rem;
+    font-size: 16px;
+    margin-bottom: 1.2rem;
+  }
+}
+
+.dish-page.s-editable {
+  h4 {
+    margin-top: 1.2rem;     
+    margin-bottom: 0.07rem;
+  }
+
+  input {
+    font-size: unset !important;
+    font-family: unset !important;
+    font-weight: unset !important;
+    font-color: unset !important;
+  }
+  
+  p.description {
+    font-family: unset !important;
+    font-weight: unset !important;
+    margin-bottom: 0;
+    textarea {
+      padding: .2rem 0 .1rem;
+      margin: 0;
+    }
+  }
+
+}
