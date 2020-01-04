@@ -14,7 +14,7 @@
   min-height: 100vh;
 
   p.description {
-    min-height: 3rem;
+    min-height: 50px;
     font-size: 16px;
     margin: 0 0 22px 0;
   }
@@ -36,6 +36,8 @@
     text-shadow: 1px 1px rgba(255,255,255,.8);
     
     input {
+      background: #fafafa;
+      color: #555;
       font-size: unset !important;
       font-family: unset !important;
       font-weight: unset !important;
@@ -49,7 +51,11 @@
     margin-bottom: 0;
 
     textarea {
-      padding: .2rem 0 .1rem;
+      background: #fafafa;
+      color: #555;
+      min-height: 50px;
+      line-height: 24px !important;
+      padding: 0 0 12px;
       margin: 0;
     }
   }
