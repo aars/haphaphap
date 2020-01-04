@@ -35,7 +35,10 @@ class Dish extends React.Component {
     if (this.state.addingIngredient) {
       if (this.newIngredient && this.newIngredient.value) {
         let ingredients = this.state.ingredients;
-        ingredients.push({name: this.newIngredient.value});
+        ingredients.push({
+          id: ingredients.length+1,
+          name: this.newIngredient.value
+        });
         this.setState({ ingredients: ingredients });
       }
     }
@@ -112,13 +115,16 @@ class Dish extends React.Component {
                   </a>
                 </li>
                 {this.state.addingIngredient && (
-                <li className="add-input input-field">
-                  <input
-                    type="text"
-                    ref={input => (this.newIngredient = input)}
-                    placeholder="Ingredient name"
-                  />
-                </li>
+                  <li className="add-input input-field">
+                    <form onSubmit={this.handleAddIngredient}>
+                      <input
+                        type="text"
+                        ref={input => (this.newIngredient = input)}
+                        placeholder="Ingredient name"
+                        autoFocus
+                      />
+                    </form>
+                  </li>
                 )}
               </ul>
               <p>
