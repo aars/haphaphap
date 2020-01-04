@@ -13,7 +13,6 @@
 // or the `imagePath` JavaScript helper below.
 //
 // const images = require.context('../images', true)
-
 console.log('Hap. Hap. Hap.')
 
 // Support component names relative to this directory:
