@@ -2,6 +2,7 @@ import React from "react";
 
 import API from "../api";
 import dishImages from "components/DishImages";
+import Recipe from 'components/Recipe';
 
 class Dish extends React.Component {
   constructor(props) {
@@ -9,11 +10,12 @@ class Dish extends React.Component {
     this.state = {
       dish: props.dish,
       ingredients: props.dish.ingredients,
+      recipes: props.dish.recipes,
       editable: false,
       addingIngredient: false,
       isDeleting: false,
     };
-
+    console.log(props.dish);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleAddIngredient = this.handleAddIngredient.bind(this);
@@ -154,6 +156,11 @@ class Dish extends React.Component {
                 <i className="material-icons">photo_camera</i>
               </a>
             </div>
+          </div>
+
+          <div className="row recipes">
+            <h4>Recipes</h4>
+            {this.state.recipes.map(recipe => (<Recipe key={recipe.id} recipe={recipe} />))}
           </div>
         </div>
       </React.Fragment>
