@@ -14,9 +14,13 @@ class Cache {
     return new Promise((resolve, reject) => {
       if (id === null) return resolve(this._cache[type]);
 
-      (id in this._cache[type])
-        ? resolve(this._cache[type][id]['data'])
-        : reject();
+      if (id in this._cache[type]) {
+        const data = this._cache[type][id]['data'];
+        data._cached_at = this._cache[type][id].cached_at;
+        resolve(data);
+      }
+
+      reject();
     });
   }
 
@@ -76,16 +80,27 @@ class API {
   }
 
   getRecipe(id) {
-    return this.cache.get('recipe', id).catch(() => {
-      return fetch(`${this.base}/recipes/${id}`)
-        .then(response => {
-          const data = response.json();
-          this.cache.set('recipe', id, data);
-          return data;
+    // TODO: Auto set/load cache items.
+    return new Promise((resolve, reject) => {
+      this.cache.get('recipe', id).then(resolve).catch(() => {
+        fetch(`${this.base}/recipes/${id}`).then(response => {
+          return response.json().then(data => {
+            this.cache.set('recipe', id, data);
+            resolve(data);
+          });
         });
+      });
     });
   }
-
+  /*
+   fetch(`${this.base}/recipes/${id}`)
+          .then(response => {
+            const data = response.json();
+            console.log('data', data);
+            this.cache.set('recipe', id, data);
+            resolve(data);
+          });
+  */
   createIngredient(ingredient) {
     return fetch(`${this.base}/ingredients`, {
       method: "POST",

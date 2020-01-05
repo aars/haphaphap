@@ -8,6 +8,7 @@ class Ingredient extends React.Component {
     super(props);
 
     this.state = {
+      recipes: [],
       ingredients: props.ingredients,
       load: true,
       adding: false
@@ -16,16 +17,15 @@ class Ingredient extends React.Component {
     this.handleAdd = this.handleAdd.bind(this);
     this.groupedIngredients = this.groupedIngredients.bind(this);
 
-    let b = API.getRecipe(1);
-    console.log(b);
     // We need ingredient-group recipe info, load.
     this.load();
   }
 
   load() {
     let ingredients = this.state.ingredients;
-    Promise.all(this.groupedIngredients().map(g => API.getRecipe(g.recipe_id))).then(() => {
-      this.setState({ load: false });
+    Promise.all(this.groupedIngredients().map(g => API.getRecipe(g.recipe_id))).then((recipes) => {
+      this.setState({ recipes, load: false });
+      console.log(this.state);
     });
   }
 
@@ -60,7 +60,11 @@ class Ingredient extends React.Component {
         acc[acc.length-1].ingredients.push(i);
       } else {
         // Create new group entry. Get recipe details.
-        acc.push({recipe_id: i.recipe_id, ingredients: [i]});
+        acc.push({
+          recipe_id: i.recipe_id,
+          recipe: this.state.recipes.find(r => r.id == i.recipe_id),
+          ingredients: [i]}
+        );
       }
       return acc;
     }, []);
@@ -92,7 +96,7 @@ class Ingredient extends React.Component {
 
     let steps = this.groupedIngredients().map(group => {
       return [
-        <li key={`ingredient-group-${group.recipe_id}`} className="ingredient-group">group</li>,
+        (group.recipe.id !== this.props.recipe_id && <li key={`ingredient-group-${group.recipe_id}`} className="ingredient-group">Voor de <b>{group.recipe.name}</b></li>),
         ...group.ingredients.map(i => (
           <li key={`ingredient-${i.id}`} className="ingredient">{i.ingredient.name}</li>
         ))
