@@ -57,7 +57,7 @@ class Recipe extends React.Component {
 
     return (
       <React.Fragment>
-        <div className={"row recipe " + (this.props.as_step && "as-step")}>
+        <div className={"row recipe " + (this.props.as_step && "as-step" || "")}>
           {!this.props.as_step && (
             <div className="row recipe-meta">
               <h4 className="title">{this.state.recipe.name}</h4>
