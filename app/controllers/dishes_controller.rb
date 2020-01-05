@@ -5,7 +5,7 @@ class DishesController < ApplicationController
       .as_json(include: [
         :weeklists,
         :recipes,
-        :ingredients
+        ingredients: {include: [:ingredient]}
       ])
   end
 

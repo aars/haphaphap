@@ -16,12 +16,12 @@ class Recipe extends React.Component {
       this.state.load = true;
       this.getRecipe(props.recipe_id)
     }
-
-    console.log(this.state.recipe);
   }
 
   getRecipe(id) {
-    API.getRecipe(id).then(recipe => this.setState({ recipe: recipe, load: false }));
+    API.getRecipe(id).then(recipe => {
+      this.setState({ recipe: recipe, load: false });
+    });
   }
 
   render () {
@@ -33,7 +33,7 @@ class Recipe extends React.Component {
       );
     }
 
-    let steps = this.state.recipe.recipe_steps.map(step => {
+    let steps = this.state.recipe.steps.map(step => {
       if (step.is_recipe_id) {
         let recipe = {id: step.is_recipe_id};
         return (

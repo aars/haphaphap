@@ -1,8 +1,38 @@
 import PropTypes from "prop-types"
 
+class Cache {
+  constructor(types) {
+    this._cache = {};
+    (types || []).forEach(this.addType.bind(this));
+  }
+
+  addType(type) {
+    this._cache[type] = {};
+  }
+
+  get(type, id) {
+    return new Promise((resolve, reject) => {
+      if (id === null) return resolve(this._cache[type]);
+
+      (id in this._cache[type])
+        ? resolve(this._cache[type][id]['data'])
+        : reject();
+    });
+  }
+
+  set(type, id, data) {
+    this._cache[type][id] = {
+      'data': data,
+      'cached_at': new Date(),
+    };
+  }
+}
+
 class API {
-  constructor(base) {
+  constructor(base, cache) {
     this.base = base;
+    this.cache = cache;
+    console.log(this.cache);
   }
 
   getDishes() {
@@ -46,10 +76,14 @@ class API {
   }
 
   getRecipe(id) {
-    return fetch(`${this.base}/recipes/${id}`)
-      .then(response => {
-        return response.json();
-      })
+    return this.cache.get('recipe', id).catch(() => {
+      return fetch(`${this.base}/recipes/${id}`)
+        .then(response => {
+          const data = response.json();
+          this.cache.set('recipe', id, data);
+          return data;
+        });
+    });
   }
 
   createIngredient(ingredient) {
@@ -67,5 +101,6 @@ class API {
 
 }
 
-const api = new API('/api/v1');
+const cache = new Cache(['dish', 'recipe', 'ingredient']);
+const api = new API('/api/v1', cache);
 export default api

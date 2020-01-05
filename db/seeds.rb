@@ -45,13 +45,13 @@ cb_r = Recipe.create(name: "Courgetteburger", description: "standaard recept", d
 ei = Ingredient.create(name: "Ei")
 courgette = Ingredient.create(name: "courgette")
 paneermeel = Ingredient.create(name: "paneermeel")
-RecipeIngredient.create(recipe_id: cb_r, ingredient_id: ei.id, unit: "pcs", quantity: 1)
-RecipeIngredient.create(recipe_id: cb_r, ingredient_id: courgette.id, unit: "pcs", quantity: 1)
-RecipeIngredient.create(recipe_id: cb_r, ingredient_id: paneermeel.id, unit: "cup", quantity: 1)
+RecipeIngredient.create(recipe_id: cb_r.id, ingredient_id: ei.id, unit: "pcs", quantity: 1)
+RecipeIngredient.create(recipe_id: cb_r.id, ingredient_id: courgette.id, unit: "pcs", quantity: 1)
+RecipeIngredient.create(recipe_id: cb_r.id, ingredient_id: paneermeel.id, unit: "cup", quantity: 1)
 
 # Create first 'actual' step.
-cb_step_1 = RecipeStep.create(title: "rasp en droog de courgette", instruction: "Rasp de courgettes met een grove rasp. Leg de geraspte courgette in een vergiet en strooi er flink wat zout over. Hierdoor onttrek je het overtollige vocht en krijg je straks mooie burgers. Laat de courgette tien minuutjes uitlekken en knijp daarna het vocht er met de hand uit. En dan bedoel ik echt stevig knijpen zodat je zoveel mogelijk vocht eruit haalt.", duration: 5, recipe_id: cb.id)
+cb_step_1 = RecipeStep.create(title: "rasp en droog de courgette", instruction: "Rasp de courgettes met een grove rasp. Leg de geraspte courgette in een vergiet en strooi er flink wat zout over. Hierdoor onttrek je het overtollige vocht en krijg je straks mooie burgers. Laat de courgette tien minuutjes uitlekken en knijp daarna het vocht er met de hand uit. En dan bedoel ik echt stevig knijpen zodat je zoveel mogelijk vocht eruit haalt.", duration: 5, recipe_id: cb_r.id)
 RecipeStepIngredient.create(recipe_step_id: cb_step_1.id, ingredient_id: ei.id)
 
 # Link bcms recipe as step 2
-RecipeStep.create(recipe_id: cb.id, is_recipe_id: bcms.id)
+RecipeStep.create(recipe_id: cb_r.id, is_recipe_id: bcms.id)
