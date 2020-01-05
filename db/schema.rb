@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_05_000145) do
+ActiveRecord::Schema.define(version: 2020_01_05_123930) do
 
   create_table "dishes", force: :cascade do |t|
     t.string "name"
@@ -29,20 +29,23 @@ ActiveRecord::Schema.define(version: 2020_01_05_000145) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "ingredients_recipe_steps", id: false, force: :cascade do |t|
-    t.integer "recipe_step_id", null: false
-    t.integer "ingredient_id", null: false
-  end
-
-  create_table "ingredients_recipes", id: false, force: :cascade do |t|
-    t.integer "recipe_id", null: false
-    t.integer "ingredient_id", null: false
+    t.integer "quantity"
+    t.string "unit"
   end
 
   create_table "recipe_ingredients", force: :cascade do |t|
-    t.integer "amount"
+    t.string "unit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "recipe_id"
+    t.integer "ingredient_id"
+    t.integer "quantity"
+  end
+
+  create_table "recipe_step_ingredients", force: :cascade do |t|
+    t.integer "recipe_step_id"
+    t.integer "ingredient_id"
+    t.integer "quantity"
     t.string "unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -68,7 +71,6 @@ ActiveRecord::Schema.define(version: 2020_01_05_000145) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "duration"
     t.integer "dish_id"
   end
 

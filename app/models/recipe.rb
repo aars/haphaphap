@@ -1,5 +1,5 @@
 class Recipe < ApplicationRecord
-  belongs_to :dish
+  belongs_to :dish, optional: true
   has_many :recipe_steps
-  has_and_belongs_to_many :ingredients
+  has_many :recipe_ingredients
 end
