@@ -3,6 +3,6 @@ class Dish < ApplicationRecord
     has_many :recipes
 
     def ingredients
-      self.recipes.first.ingredients
+      self.recipes.first ? self.recipes.first.ingredients : []
     end
 end

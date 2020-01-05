@@ -26,7 +26,14 @@
       float: right;
       font-weight: bold;
     }
-  } 
+  }
+
+  .recipes {
+    .placeholder {
+      font-size: 18px;
+      font-family: "Cutive Mono";
+    }
+  }
 }
 
 .dish-page.s-editable {

@@ -11,6 +11,7 @@ class Ingredient extends React.Component {
       ingredients: props.ingredients,
       adding: false
     };
+    console.log(this.states)
   }
 
   handleAdd() {

@@ -3,11 +3,9 @@ class DishesController < ApplicationController
     Dish
       .find(params[id])
       .as_json(include: [
-        :ingredients,
         :weeklists,
-        :recipes => {
-          :include => :recipe_steps
-        }
+        :recipes,
+        :ingredients
       ])
   end
 

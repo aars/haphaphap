@@ -5,6 +5,9 @@ class Api::V1::DishesController < ApplicationController
 
   def create
     dish = Dish.create(dish_params)
+    default_recipe = Recipe.create(name: dish_params[:name])
+    dish.recipes << default_recipe
+    dish.save
     render json: dish
   end
 

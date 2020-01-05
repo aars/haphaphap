@@ -13,12 +13,11 @@ class Dish extends React.Component {
       ingredients: props.dish.ingredients,
       recipes: props.dish.recipes,
       editable: false,
-      addingIngredient: false,
       isDeleting: false,
     };
+
     this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.handleAddIngredient = this.handleAddIngredient.bind(this);
   }
 
   // Handles dish property edits. Relationships (lists, recipes) handled seperately.
@@ -44,20 +43,6 @@ class Dish extends React.Component {
     });
   }
 
-  handleAddIngredient() {
-    if (this.state.addingIngredient) {
-      if (this.newIngredient && this.newIngredient.value) {
-        let ingredients = this.state.ingredients;
-        ingredients.push({
-          id: ingredients.length+1,
-          name: this.newIngredient.value
-        });
-        this.setState({ ingredients: ingredients });
-      }
-    }
-    this.setState({ addingIngredient: !this.state.addingIngredient });
-  }
-
   render() {
     let name = this.state.editable ? (
       <input
@@ -77,12 +62,6 @@ class Dish extends React.Component {
     ) : (
       this.state.dish.description
     );
-
-    let addIngredientBtnClasses = [
-      "btn", "btn-floating", "halfway-fab", "btn-small",
-      "waves-effect", "waves-light", "blue", "right",
-      (this.state.addingIngredient ? "darken-2" : "lighten-3")
-    ];
 
     let deleteBtnClasses = ["btn", "waves-effect", "waves-light"];
     if (this.state.isDeleting) {
@@ -121,7 +100,7 @@ class Dish extends React.Component {
 
             <div className="col s6 ingredients">
               <p className="description">{description}</p>
-              <Ingredients ingredients={this.state.ingredients} add={false} />
+              <Ingredients ingredients={this.state.ingredients} />
             </div>
 
             <div className="col s6 dish-image">
@@ -134,7 +113,9 @@ class Dish extends React.Component {
 
           <div className="row recipes">
             <h4>Recipes</h4>
-            {this.state.recipes.map(recipe => (<Recipe key={recipe.id} recipe_id={recipe.id} />))}
+            {!this.state.recipes.length && (
+              <p class="placeholder">No recipes yet.</p>
+            ) || this.state.recipes.map(recipe => (<Recipe key={recipe.id} recipe_id={recipe.id} />))}
           </div>
         </div>
       </React.Fragment>
