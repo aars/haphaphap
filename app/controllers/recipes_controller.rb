@@ -11,9 +11,4 @@ class RecipesController < ApplicationController
   def show
     @recipe = get_recipe :id
   end
-  def edit
-    @recipe = get_recipe :id
-  end
-  def add
-  end
 end

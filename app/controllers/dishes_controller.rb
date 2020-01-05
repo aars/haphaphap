@@ -15,9 +15,4 @@ class DishesController < ApplicationController
   def show
     @dish = get_dish :id
   end
-  def edit
-    @dish = get_dish :id
-  end
-  def add
-  end
 end

@@ -3,6 +3,7 @@ class Dish < ApplicationRecord
     has_many :recipes
 
     def ingredients
+      binding.pry
       self.recipes.first ? self.recipes.first.ingredients : []
     end
 end
