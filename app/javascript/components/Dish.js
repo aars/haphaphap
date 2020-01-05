@@ -2,6 +2,7 @@ import React from "react";
 
 import API from "../api";
 import dishImages from "components/DishImages";
+import Ingredients from "components/Ingredients";
 import Recipe from 'components/Recipe';
 
 class Dish extends React.Component {
@@ -15,7 +16,6 @@ class Dish extends React.Component {
       addingIngredient: false,
       isDeleting: false,
     };
-    console.log(props.dish);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleAddIngredient = this.handleAddIngredient.bind(this);
@@ -118,38 +118,12 @@ class Dish extends React.Component {
           </div>
 
           <div className="row">
+
             <div className="col s6 ingredients">
               <p className="description">{description}</p>
-
-              <h4 className="title">Ingredients <span>(for recipe #1)</span></h4>
-              <ul className="ingredients">
-                {this.state.ingredients.length && this.state.ingredients.map(ingredient => (
-                  <li className="ingredient" key={ingredient.id}>{ingredient.name}</li>)
-                ) || (
-                  <li className="placeholder">No ingredients yet.</li>
-                )}
-
-                <li className="add">
-                  <a className={addIngredientBtnClasses.join(' ')} onClick={this.handleAddIngredient}>
-                    <i className="material-icons">add</i>
-                  </a>
-                </li>
-                {this.state.addingIngredient && (
-                  <li className="add-input input-field">
-                    <form onSubmit={this.handleAddIngredient}>
-                      <input
-                        type="text"
-                        ref={input => (this.newIngredient = input)}
-                        placeholder="Ingredient name"
-                        autoFocus
-                      />
-                    </form>
-                  </li>
-                )}
-              </ul>
-              <p>
-              </p>
+              <Ingredients ingredients={this.state.ingredients} add={false} />
             </div>
+
             <div className="col s6 dish-image">
               <img className="responsive-img" src={dishImages[this.props.dish.id] || dishImages['default']} />
               <a className="btn-floating waves-effect waves-light blue right">
@@ -160,7 +134,7 @@ class Dish extends React.Component {
 
           <div className="row recipes">
             <h4>Recipes</h4>
-            {this.state.recipes.map(recipe => (<Recipe key={recipe.id} recipe={recipe} />))}
+            {this.state.recipes.map(recipe => (<Recipe key={recipe.id} recipe_id={recipe.id} />))}
           </div>
         </div>
       </React.Fragment>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
      resources :dishes, only: [:index, :show, :create, :destroy, :update]
      resources :recipes, only: [:index, :show, :create, :destroy, :update]
+     resources :ingredients, only: [:index, :show, :create, :destroy, :update]
     end
   end
   root to: 'home#index'

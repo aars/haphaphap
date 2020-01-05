@@ -1,8 +1,8 @@
 .row.recipe {
-  .name {
-    background: rgba(0,0,0,.05);
-    padding: 0 10px;
-    display: inline;
+  .title {
+    font-weight: 500;
+    color: #555;
+    font-size: 28px;
   }
 
   .description {
@@ -10,7 +10,9 @@
   }
 
   .step-duration {
-    color: #bcbcbc;
+    display: inline;
+    float: left;
+    color: #8c8cbc;
 
     span {
       font-size: 14px;
@@ -20,13 +22,17 @@
   &.as-step {
     .collection {
       border: none;
+      padding-left: 20px;
     }
     .collection li {
+      padding-left: 20px;
       border-top: 1px solid rgba(0,0,0,.1);
     }
   }
 
   .row.recipe_step {
+    padding-left: 20px;
+
     &.is-recipe {
       padding-right: 0;
     }

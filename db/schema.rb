@@ -10,18 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_04_221715) do
+ActiveRecord::Schema.define(version: 2020_01_05_000145) do
 
   create_table "dishes", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description", default: "Insert dish description"
-  end
-
-  create_table "dishes_ingredients", id: false, force: :cascade do |t|
-    t.integer "dish_id", null: false
-    t.integer "ingredient_id", null: false
   end
 
   create_table "dishes_weeklists", id: false, force: :cascade do |t|

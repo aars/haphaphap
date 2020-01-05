@@ -2,16 +2,22 @@ import React from "react"
 import PropTypes from "prop-types"
 
 import API from "../api";
+import Ingredients from "components/Ingredients";
 
 class Recipe extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       recipe: props.recipe,
-      load: !!props.load
+      load: false
     };
 
-    if (props.load) this.getRecipe(props.recipe.id)
+    if (this.props.recipe_id) {
+      this.state.load = true;
+      this.getRecipe(props.recipe_id)
+    }
+
+    console.log(this.state.recipe);
   }
 
   getRecipe(id) {
@@ -27,14 +33,12 @@ class Recipe extends React.Component {
       );
     }
 
-    console.log(this.state.recipe);
-
     let steps = this.state.recipe.recipe_steps.map(step => {
       if (step.is_recipe_id) {
         let recipe = {id: step.is_recipe_id};
         return (
           <li key={step.id} className="row recipe_step is-recipe collection-item avatar">
-            <Recipe recipe={{id: step.is_recipe_id}} as_step={true} load={true} />
+            <Recipe recipe_id={step.is_recipe_id} as_step={true} />
           </li>
         )
       } else {
@@ -54,15 +58,20 @@ class Recipe extends React.Component {
     return (
       <React.Fragment>
         <div className={"row recipe " + (this.props.as_step && "as-step")}>
-          {this.props.as_step && (
-            <div className="title">{this.state.recipe.name}</div>
+          {!this.props.as_step && (
+            <div className="row recipe-meta">
+              <h4 className="title">{this.state.recipe.name}</h4>
+              <div className="col s6">
+                <p className="description">{this.state.recipe.description}</p>
+              </div>
+              <div className="col s6">
+                <Ingredients ingredients={this.state.recipe.ingredients} add={true} recipe_id={this.state.recipe.id} />
+              </div>
+            </div>
           ) || (
-            <h5 className="name">{this.state.recipe.name}</h5>
+            <div className="title">{this.state.recipe.name}</div>
           )}
 
-          {!this.props.as_step && (
-            <p className="description">{this.state.recipe.description}</p>
-          )}
 
           {!this.props.as_step && <h4>Steps</h4>}
           <ol className="collection">

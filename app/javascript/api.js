@@ -52,6 +52,19 @@ class API {
       })
   }
 
+  createIngredient(ingredient) {
+    return fetch(`${this.base}/ingredients`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ingredient: ingredient})
+    }).then(response => {
+      return response.json();
+    });
+  }
+
+
 }
 
 const api = new API('/api/v1');
