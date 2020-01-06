@@ -36,6 +36,25 @@
   }
 }
 
+.dish-page {
+  & > .row > .ingredients {
+    li.ingredient {
+      font-size: 20px;
+      padding-left: 10px;
+      border-bottom: none;
+      text-shadow: 1px 1px 0px rgba(255,255,255,.2);
+      text-transform: capitalize;
+    
+      &:nth-child(even) {
+        background: #fff;
+      }
+      &:nth-child(odd) {
+        background: #fafafa;
+      }
+    }
+  }
+}
+
 .dish-page.s-editable {
   .name {
     margin-top: 1.2rem;     

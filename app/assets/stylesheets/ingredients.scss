@@ -8,6 +8,12 @@ ul.ingredients {
   li.placeholder {
     font-size: 18px;
   }
+  
+  li.ingredient-group {
+    font-size: 20px;
+    border-bottom: 2px solid rgba(0,0,0,.05);
+    margin: .5em 0 0;
+  }
 
   li.ingredient {
     font-size: 20px;
@@ -21,6 +27,27 @@ ul.ingredients {
     }
     &:nth-child(odd) {
       background: #e8f5e9;
+    }
+
+    .quantity {
+      float: right;
+      position: relative;
+      padding: 0 5px 0 0;
+      width: 90px;
+      text-shadow: 1px 1px 0 rgba(255,255,255,1);
+      border-left: 2px solid rgba(0,0,0,.05);
+
+      .value {
+        color: #464;
+        font-weight: bold;
+        padding: 0 .2em;
+      }
+
+      .unit {
+        color: #444;
+        font-size: 14px;
+        vertical-align: top;
+      }
     }
   }
 
@@ -38,19 +65,3 @@ ul.ingredients {
   }
 }
 
-.dish-page > .row > .ingredients {
-  li.ingredient {
-    font-size: 20px;
-    padding-left: 10px;
-    border-bottom: none;
-    text-shadow: 1px 1px 0px rgba(255,255,255,.2);
-    text-transform: capitalize;
-  
-    &:nth-child(even) {
-      background: #fff;
-    }
-    &:nth-child(odd) {
-      background: #fafafa;
-    }
-  }
-}

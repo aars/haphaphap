@@ -8,7 +8,7 @@ class Recipe < ApplicationRecord
   # collect ingredients from this recipe and any sub-recipe (step.is_recipe_id)
   def ingredients
     (self.recipe_ingredients + self.steps.map{|i|
-      Recipe.find(i.is_recipe_id).ingredients if i.is_recipe_id
+      Recipe.includes(:recipe_ingredients).find(i.is_recipe_id).ingredients if i.is_recipe_id
     }.compact).flatten
   end
 end

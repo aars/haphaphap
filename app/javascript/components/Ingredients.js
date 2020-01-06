@@ -25,7 +25,6 @@ class Ingredient extends React.Component {
     let ingredients = this.state.ingredients;
     Promise.all(this.groupedIngredients().map(g => API.getRecipe(g.recipe_id))).then((recipes) => {
       this.setState({ recipes, load: false });
-      console.log(this.state);
     });
   }
 
@@ -96,9 +95,15 @@ class Ingredient extends React.Component {
 
     let steps = this.groupedIngredients().map(group => {
       return [
-        (group.recipe.id !== this.props.recipe_id && <li key={`ingredient-group-${group.recipe_id}`} className="ingredient-group">Voor de <b>{group.recipe.name}</b></li>),
+        (<li key={`ingredient-group-${group.recipe_id}`} className="ingredient-group">Voor de <b>{group.recipe.name}</b></li>),
         ...group.ingredients.map(i => (
-          <li key={`ingredient-${i.id}`} className="ingredient">{i.ingredient.name}</li>
+          <li key={`ingredient-${i.id}`} className="ingredient">
+            <span className="name">{i.ingredient.name}</span>
+            <span className="quantity">
+              <span className="value">{i.quantity}</span>
+              <span className="unit">{i.unit}</span>
+            </span>
+          </li>
         ))
       ];
     });
