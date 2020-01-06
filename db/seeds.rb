@@ -38,6 +38,27 @@ RecipeStepIngredient.create(recipe_step_id: bcms_step_3.id, ingredient_id: zout.
 RecipeStepIngredient.create(recipe_step_id: bcms_step_3.id, ingredient_id: peper.id)
 RecipeStepIngredient.create(recipe_step_id: bcms_step_3.id, ingredient_id: nootmuskaat.id)
 
+# Second subRecipe to test ingredient accumilation.
+acms = Recipe.create(name: "Aa-chamelsaus", description: "Blauwe saus")
+RecipeIngredient.create(recipe_id: acms.id, ingredient_id: bloem.id, unit: "g", quantity: 50)
+RecipeIngredient.create(recipe_id: acms.id, ingredient_id: boter.id, unit: "g", quantity: 50)
+RecipeIngredient.create(recipe_id: acms.id, ingredient_id: melk.id, unit: "ml", quantity: 500)
+RecipeIngredient.create(recipe_id: acms.id, ingredient_id: peper.id, unit: "snufje", quantity: 1)
+RecipeIngredient.create(recipe_id: acms.id, ingredient_id: zout.id, unit: "snufje", quantity: 1)
+RecipeIngredient.create(recipe_id: acms.id, ingredient_id: nootmuskaat.id, unit: "snufje", quantity: 1)
+
+# Create RecipeSteps and link Ingredients.
+acms_step_1 = RecipeStep.create(title: "smelt de boe", instruction: "doe de boter in je hol. Ook de bloem. Hup. Er in.", duration: 50, recipe_id: acms.id)
+RecipeStepIngredient.create(recipe_step_id: acms_step_1.id, ingredient_id: boter.id)
+RecipeStepIngredient.create(recipe_step_id: acms_step_1.id, ingredient_id: bloem.id)
+acms_step_2 = RecipeStep.create(title: "voeg de melk toe", instruction: "Giet dan beetje bij beetje de melk in je moeder. Heel snel.", duration: 1, recipe_id: acms.id)
+RecipeStepIngredient.create(recipe_step_id: acms_step_2.id, ingredient_id: melk.id)
+acms_step_3 = RecipeStep.create(title: "stop de peper in de zout", instruction: "Breng de Aa-chamelsaus op smaak met een snufje peper-gevuld-zout.", duration: 1, recipe_id: acms.id)
+RecipeStepIngredient.create(recipe_step_id: acms_step_3.id, ingredient_id: zout.id)
+RecipeStepIngredient.create(recipe_step_id: acms_step_3.id, ingredient_id: peper.id)
+RecipeStepIngredient.create(recipe_step_id: acms_step_3.id, ingredient_id: nootmuskaat.id)
+
+
 # Create Dish with it's default Recipe, with above Recipe as step.
 cb = Dish.create(name: "Courgetteburger", description: "Zompige burger.")
 cb_r = Recipe.create(name: "Courgetteburger", description: "standaard recept", dish_id: cb.id)
@@ -55,3 +76,5 @@ RecipeStepIngredient.create(recipe_step_id: cb_step_1.id, ingredient_id: ei.id)
 
 # Link bcms recipe as step 2
 RecipeStep.create(recipe_id: cb_r.id, is_recipe_id: bcms.id)
+# Link acms recipe as step 3 (yeah, I know, no order yet)
+RecipeStep.create(recipe_id: cb_r.id, is_recipe_id: acms.id)
