@@ -97,10 +97,9 @@ class Dish extends React.Component {
           </div>
 
           <div className="row">
-
             <div className="col s6 ingredients">
               <p className="description">{description}</p>
-              <Ingredients ingredients={this.state.ingredients} />
+              <Ingredients ingredients={this.state.ingredients} total />
             </div>
 
             <div className="col s6 dish-image">

@@ -14,10 +14,12 @@ class Ingredient extends React.Component {
       adding: false
     };
 
+    console.log(this.props);
     this.handleAdd = this.handleAdd.bind(this);
     this.groupedIngredients = this.groupedIngredients.bind(this);
 
-    // We need ingredient-group recipe info, load.
+    // We need ingredient-group recipe info, load. Not really needed for non-grouped renders, but we
+    // don't want to do the checks/work to figure that out, now and in the future.
     this.load();
   }
 
@@ -70,6 +72,44 @@ class Ingredient extends React.Component {
     return grouped;
   }
 
+  totalIngredients() {
+    // Turn into object for unique ingredients, accumulate quantities for existing ingredients, turn back to array.
+    return Object.values(this.state.ingredients.reduce((acc, i) => {
+      if (i.ingredient.id in acc) {
+        acc[i.ingredient.id].quantity += i.quantity; // TODO: Normalize quantities.
+      } else {
+        acc[i.ingredient.id] = i;
+      }
+
+      return acc;
+    }, {}));
+  }
+
+  renderGroupedIngredients() {
+    return this.groupedIngredients().map(group => {
+      return [
+        (<li key={`ingredient-group-${group.recipe_id}`} className="ingredient-group">Voor de <b>{group.recipe.name}</b></li>),
+        ...group.ingredients.map(this.renderRecipeIngredient)
+      ];
+    });
+  }
+
+  renderTotalIngredients() {
+    return this.totalIngredients().map(this.renderRecipeIngredient);
+  }
+
+  renderRecipeIngredient(i) {
+    return (
+      <li key={`ingredient-${i.id}`} className="ingredient">
+        <span className="name">{i.ingredient.name}</span>
+        <span className="quantity">
+          <span className="value">{i.quantity}</span>
+          <span className="unit">{i.unit}</span>
+        </span>
+      </li>
+    );
+  }
+
   render () {
     if (this.state.load) {
       return (
@@ -93,27 +133,14 @@ class Ingredient extends React.Component {
       (this.state.adding ? "darken-2" : "lighten-3")
     ];
 
-    let steps = this.groupedIngredients().map(group => {
-      return [
-        (<li key={`ingredient-group-${group.recipe_id}`} className="ingredient-group">Voor de <b>{group.recipe.name}</b></li>),
-        ...group.ingredients.map(i => (
-          <li key={`ingredient-${i.id}`} className="ingredient">
-            <span className="name">{i.ingredient.name}</span>
-            <span className="quantity">
-              <span className="value">{i.quantity}</span>
-              <span className="unit">{i.unit}</span>
-            </span>
-          </li>
-        ))
-      ];
-    });
+    let items = this.props.total ? this.renderTotalIngredients() : this.renderGroupedIngredients();
 
     return (
       <React.Fragment>
         <div className={this.props.className}>
           <h4 className="title">Ingredients</h4>
           <ul className="ingredients">
-            {steps}
+            {items}
           </ul>
         </div>
       </React.Fragment>

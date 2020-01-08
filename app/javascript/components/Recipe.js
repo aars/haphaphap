@@ -65,7 +65,7 @@ class Recipe extends React.Component {
                 <p className="description">{this.state.recipe.description}</p>
               </div>
               <div className="col s6">
-                <Ingredients ingredients={this.state.recipe.ingredients} add={true} recipe_id={this.state.recipe.id} />
+                <Ingredients ingredients={this.state.recipe.ingredients} recipe_id={this.state.recipe.id} add />
               </div>
             </div>
           ) || (
