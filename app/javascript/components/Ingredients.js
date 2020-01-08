@@ -1,7 +1,11 @@
-import React from "react"
-import PropTypes from "prop-types"
+import Autosuggest from 'react-autosuggest'
 
-import API from "../api"
+import React from 'react'
+import PropTypes from 'prop-types'
+
+import API from '../api'
+
+import AutoSuggest from 'components/AutoSuggest'
 
 class Ingredient extends React.Component {
   constructor(props) {
@@ -14,12 +18,11 @@ class Ingredient extends React.Component {
       adding: false
     };
 
-    console.log(this.props);
     this.handleAdd = this.handleAdd.bind(this);
     this.groupedIngredients = this.groupedIngredients.bind(this);
 
-    // We need ingredient-group recipe info, load. Not really needed for non-grouped renders, but we
-    // don't want to do the checks/work to figure that out, now and in the future.
+    // We need ingredient-group recipe info, load. Not really needed for non-grouped renders,
+    // but we don't want to do the checks/work to figure that out, now and in the future.
     this.load();
   }
 
@@ -110,6 +113,29 @@ class Ingredient extends React.Component {
     );
   }
 
+  renderAddIngredient() {
+    const btnClasses = [
+      "btn", "btn-floating", "halfway-fab", "btn-small",
+      "waves-effect", "waves-light", "blue", "right",
+      (this.state.adding ? "darken-2" : "lighten-3")
+    ];
+
+    return [(
+      <li key="ingredient-add-btn" className="add">
+        <a className={btnClasses.join(' ')} onClick={this.handleAdd}>
+          <i className="material-icons">add</i>
+        </a>
+      </li>),
+      this.state.adding && (
+        <li key="ingredient-add-input" className="add-input input-field">
+          <form onSubmit={this.handleAdd}>
+          <AutoSuggest data={API.getAll('ingredients')}
+            ref={input => (this.newIngredient = input)} />
+          </form>
+        </li>
+    )];
+  }
+
   render () {
     if (this.state.load) {
       return (
@@ -127,12 +153,6 @@ class Ingredient extends React.Component {
     if (this.state.ingredients.length === 0)
       return (<li className="placeholder">No ingredients yet.</li>)
 
-    let addIngredientBtnClasses = [
-      "btn", "btn-floating", "halfway-fab", "btn-small",
-      "waves-effect", "waves-light", "blue", "right",
-      (this.state.adding ? "darken-2" : "lighten-3")
-    ];
-
     let items = this.props.total ? this.renderTotalIngredients() : this.renderGroupedIngredients();
 
     return (
@@ -141,6 +161,8 @@ class Ingredient extends React.Component {
           <h4 className="title">Ingredients</h4>
           <ul className="ingredients">
             {items}
+
+            {this.props.add && this.renderAddIngredient()}
           </ul>
         </div>
       </React.Fragment>

@@ -1,4 +1,6 @@
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types'
+
+import pluralize from 'pluralize'
 
 class Cache {
   constructor(types) {
@@ -36,9 +38,37 @@ class API {
   constructor(base, cache) {
     this.base = base;
     this.cache = cache;
-    console.log(this.cache);
   }
 
+  get(type, id) {
+    if (id === undefined) return this.getAll(type);
+    return this.getById(type, id);
+  }
+
+  getAll(type) {
+    return fetch(`${this.base}/${pluralize(type)}.json`)
+      .then(response => {
+        return response.json();
+      })
+  }
+
+  getById(type, id) {
+    // TODO: Auto set/load cache items.
+    return new Promise((resolve, reject) => {
+      this.cache.get(pluralize.singular(type), id)
+        .then(resolve) // Found in Cache
+        .catch(() => { // Get from server.
+          fetch(`${this.base}/${pluralize(type)}/${id}`).then(res => {
+            return res.json().then(data => { // Cache and resolve.
+              this.cache.set(pluralize.singular(type), id, data);
+              resolve(data);
+            });
+        });
+      });
+    });
+  }
+
+  /* -------------------------------- */
   getDishes() {
     return fetch(`${this.base}/dishes.json`)
       .then(response => {
@@ -113,7 +143,12 @@ class API {
     });
   }
 
-
+  getIngredients() {
+    return fetch(`${this.base}/dishes.json`)
+      .then(response => {
+        return response.json();
+      })
+  }
 }
 
 const cache = new Cache(['dish', 'recipe', 'ingredient']);

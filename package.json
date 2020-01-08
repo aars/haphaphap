@@ -6,8 +6,10 @@
     "@rails/webpacker": "^4.0.7",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "eslint-plugin-react": "^7.17.0",
+    "pluralize": "^8.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
+    "react-autosuggest": "^9.4.3",
     "react-dom": "^16.9.0",
     "react_ujs": "^2.6.0"
   },
